@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Button } from './components/Button';
+import { Scoreboard } from './components/ Scoreboard';
 import './App.css';
+import { Counter } from './Counter';
+import { CellForIntervall } from './СellForIntervall';
+
 
 function App() {
+
+  const [minValue,setminValue] = useState<number>(0);
+  const [maxValue,setmaxValue] = useState<number>(0);
+  const [counterValue,setCounterValue] = useState<number>(minValue);
+
+  const callBackMin = (min: number) => {
+    setminValue(min);
+    setCounterValue(min);
+
+  }
+
+  const callBackMax = (max: number) => {
+    setmaxValue(max)
+  }
+
+const onClickHandlerIncrease = () => {
+  if(counterValue < maxValue) {
+    setCounterValue((prev)=> prev + 1);
+  }
+}
+
+const onClickHandlerReset= () => {
+  setCounterValue(minValue);
+}
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <div className='App'>
+          <CellForIntervall callBackMin={callBackMin} callBackMax={callBackMax}/>
+          <Counter counterValue={counterValue} maxValue={maxValue} minValue={minValue} onClickHandlerReset={onClickHandlerReset} onClickHandlerIncrease={onClickHandlerIncrease}/>
+        </div>
   );
 }
 
 export default App;
+
+

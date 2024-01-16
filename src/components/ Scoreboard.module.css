@@ -1,0 +1,11 @@
+.red {
+   color: rgb(220, 121, 121);
+}
+
+.scoreboard {
+   font-weight: 600;
+   font-size: 16px;
+   font-size: 45px;
+   text-align: center;
+   color: black;
+}
